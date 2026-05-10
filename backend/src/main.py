@@ -6,7 +6,7 @@ from starlette_csrf import CSRFMiddleware
 
 from src.core.config import settings
 from src.core.db import init_db, close_db
-from src.api.routes import auth, samples, orders, files
+from src.api.routes import auth, samples, orders, files, reports
 
 def create_app() -> FastAPI:
     app = FastAPI(
@@ -45,4 +45,5 @@ def create_app() -> FastAPI:
     app.include_router(samples.router, prefix="/api/v1/samples", tags=["样品"])
     app.include_router(orders.router, prefix="/api/v1/orders", tags=["委托"])
     app.include_router(files.router, prefix="/api/v1/files", tags=["文件"])
+    app.include_router(reports.router, prefix="/api/v1/reports", tags=["报告"])
     return app
